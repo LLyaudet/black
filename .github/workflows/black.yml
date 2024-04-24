@@ -14,8 +14,8 @@ jobs:
           src: "."
           options: "-t py311"
       - name: Get changes
-        id: uncommitted_modifications
         run: git diff -r --quiet
+        id: uncommitted_modifications
         continue-on-error: true
       - name: Commit black changes
         if: ${{ failure() }}
