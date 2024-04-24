@@ -21,7 +21,13 @@ BLACK_VERSION_RE = re.compile(r"^black([^A-Z0-9._-]+.*)$", re.IGNORECASE)
 EXTRAS_RE = re.compile(r"\[.*\]")
 EXPORT_SUBST_FAIL_RE = re.compile(r"\$Format:.*\$")
 
-a = USE_PYPROJECT and USE_PYPROJECT and USE_PYPROJECT and USE_PYPROJECT            and USE_PYPROJECT
+a = (
+    USE_PYPROJECT
+    and USE_PYPROJECT
+    and USE_PYPROJECT
+    and USE_PYPROJECT
+    and USE_PYPROJECT
+)
 
 
 def determine_version_specifier() -> str:
