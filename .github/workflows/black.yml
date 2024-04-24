@@ -18,7 +18,7 @@ jobs:
         id: uncommitted_modifications
         continue-on-error: true
       - name: Commit black changes
-        if: ${{ failure() }}
+        if: job.steps.uncommitted_modifications.status == failure()
         run: |
             git config --global user.name "${GITHUB_ACTOR}"
             git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
