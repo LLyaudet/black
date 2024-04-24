@@ -1,6 +1,6 @@
 name: Lint
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   lint:
@@ -11,5 +11,14 @@ jobs:
         uses: psf/black@stable
         id: action_black
         with:
-          black_args: "."
-
+          src: "."
+      - name: Get changes
+        id: uncommitted_modifications
+        run: git diff -r --quiet
+      - name: Commit black changes
+        if: steps.uncommitted_modifications.exitcode > 0
+        run: |
+            git config --global user.name "${GITHUB_ACTOR}"
+            git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+            git commit -am "GH action: Apply black formatting"
+            git push origin HEAD:${GITHUB_REF}
