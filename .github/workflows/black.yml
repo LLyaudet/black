@@ -12,6 +12,7 @@ jobs:
         id: action_black
         with:
           src: "."
+          options: "-t py311"
       - name: Get changes
         id: uncommitted_modifications
         run: git diff -r --quiet
